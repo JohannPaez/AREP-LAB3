@@ -3,11 +3,14 @@ package com.arep.server;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.HashMap;
+import java.util.function.Function;
 
 public class SocketServer extends ServerSocket implements Runnable {
 
 	private Thread thread;
 	private ReadWriteRequest readerWriter;
+	private HashMap<String, Function<Request, String>> solicitudes = new HashMap<>();
 
 	/**
 	 * Crea un nuevo socketServer
@@ -44,7 +47,12 @@ public class SocketServer extends ServerSocket implements Runnable {
 					viewCss(pathData);
 					viewJavaScript(pathData);
 				}
-				if (path.equals("/index.html") || path.equals("/")) viewHtml();				 
+				if (path.equals("/index.html") || path.equals("/")) {
+					viewHtml();				 
+				} else if (solicitudes.get(path) != null) {
+					String data = solicitudes.get(path).apply(request);
+					readerWriter.write("plain", data);
+				}
 				else readerWriter.badResponse();
 				client.close();
 			} catch (IOException e) {
@@ -63,17 +71,7 @@ public class SocketServer extends ServerSocket implements Runnable {
 	public void viewHtml() {
 		String pathIndex = "/index.html";
 		String file = ReadFiles.readFiles("static" + pathIndex);
-		readerWriter.write("html", file);
-	}
-
-	/**
-	 * Muestra la imagen correspondiente dado su path
-	 * @param pathImg Es el path de la imagen solicitada
-	 */
-	public void viewImage(String[] pathImg) {
-		if (pathImg[1].equals("img")) {
-			readerWriter.writeImage("static/img/" + pathImg[2]);
-		}
+		if (ReadFiles.exist) readerWriter.write("html", file);
 	}
 
 	/**
@@ -83,7 +81,7 @@ public class SocketServer extends ServerSocket implements Runnable {
 	public void viewCss(String[] pathCss) {
 		if (pathCss[1].equals("css")) {
 			String file = ReadFiles.readFiles("static/css/" + pathCss[2]);
-			readerWriter.write("css", file);
+			if (ReadFiles.exist) readerWriter.write("css", file);
 		}
 	}
 	
@@ -94,8 +92,22 @@ public class SocketServer extends ServerSocket implements Runnable {
 	public void viewJavaScript(String[] pathJs) {
 		if (pathJs[1].equals("js")) {
 			String file = ReadFiles.readFiles("static/js/" + pathJs[2]);
-			readerWriter.write("js", file);
+			if (ReadFiles.exist) readerWriter.write("js", file);
 		}
+	}
+	
+	/**
+	 * Muestra la imagen correspondiente dado su path
+	 * @param pathImg Es el path de la imagen solicitada
+	 */
+	public void viewImage(String[] pathImg) {
+		if (pathImg[1].equals("img")) {
+			readerWriter.writeImage("static/img/" + pathImg[2]);
+		}
+	}
+	
+	public void get(String path, Function<Request, String> f) {	
+		solicitudes.put(path, f);
 	}
 
 	/**
@@ -107,14 +119,19 @@ public class SocketServer extends ServerSocket implements Runnable {
 			 System.out.println("PUERTO --------- " + System.getenv("PORT"));
 			 return Integer.parseInt(System.getenv("PORT"));
 		 }
-		 	return 36000;
+		 	return 80;
 	}
 
 	public static void main(String[] args) {
-		int port = getPort();
+		
 		try {
 			System.out.println("Corriendo sobre el puerto 80");
 			SocketServer socketServer = new SocketServer(getPort());
+			socketServer.get("/hola", (request) -> {
+				
+				
+				return "HOLA MUNDO";
+			});
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			System.err.println("Algo ha ocurrido, intente nuevamente!");

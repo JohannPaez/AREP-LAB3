@@ -28,18 +28,11 @@ public class ReadWriteRequest {
 		//this.setSocket(socket);
 		this.socket = socket; 
 		try {
-			System.out.println("LLEGO SOCKET");
+			//System.out.println("LLEGO SOCKET");
 			out = new PrintWriter(socket.getOutputStream(), true);
-			System.out.println("OUT FINAL ");
+			//System.out.println("OUT FINAL ");
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			String line;
-			String res = "";
-			System.out.println("INREADLINE " + in.readLine());
-			while ((line = in.readLine()).length() != 0) {
-				res = res + line + "\n";
-				if (!in.ready()) break;
-			}
-			System.out.println("RES ----------------------------- " + res);
+			//System.out.println("SALIO IN ");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			System.err.println("Error \n" + e);
@@ -57,8 +50,7 @@ public class ReadWriteRequest {
 			String line;
 			String res = "";
 			//System.out.println("INLINE " + in.readLine());
-			while ((line = in.readLine()).length() != 0) {
-				//System.out.println("Recibí: " + line);
+			while ((line = in.readLine()).length() != 0) {				
 				res = res + line + "\n";
 				if (!in.ready()) break;
 			}
@@ -91,6 +83,8 @@ public class ReadWriteRequest {
 	}
 	
 	public void badResponse() {		
+		
+		System.out.println("ENTRO BADRESPONSE");
 		try {
 			String response = "HTTP/1.0 404 Not Found \r\n" 
 					+ "Content-type: text/html" + "\r\n\r\n"
