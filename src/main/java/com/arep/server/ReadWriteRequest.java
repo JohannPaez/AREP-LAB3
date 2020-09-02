@@ -34,6 +34,7 @@ public class ReadWriteRequest {
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			String line;
 			String res = "";
+			System.out.println("INREADLINE " + in.readLine());
 			while ((line = in.readLine()).length() != 0) {
 				res = res + line + "\n";
 				if (!in.ready()) break;
