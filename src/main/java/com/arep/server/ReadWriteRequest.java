@@ -42,11 +42,12 @@ public class ReadWriteRequest {
 	 * @return Un string con la información recibida
 	 */
 	public String read() {
-		String line = null;
+		String line;
 		String res = "";
 		try {
-			System.out.println("INLINE " + in.readLine());
+			//System.out.println("INLINE " + in.readLine());
 			while ((line = in.readLine()) != null) {
+				System.out.println("Recibí: " + line);
 				res += line + "\n";
 				if (!in.ready()) break;
 			}
