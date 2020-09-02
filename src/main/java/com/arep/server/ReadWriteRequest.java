@@ -25,10 +25,14 @@ public class ReadWriteRequest {
 	 * @param socket Es el socket a ser guardado
 	 */
 	public ReadWriteRequest (Socket socket) {
-		this.setSocket(socket);		
+		//this.setSocket(socket);
+		this.socket = socket; 
 		try {
+			System.out.println("LLEGO SOCKET");
 			out = new PrintWriter(socket.getOutputStream(), true);
+			System.out.println("OUT FINAL ");
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			System.out.println("IN FINAL ");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			System.err.println("Error \n" + e);
