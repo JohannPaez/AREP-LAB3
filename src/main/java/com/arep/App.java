@@ -1,13 +1,18 @@
 package com.arep;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 /**
- * Hello world!
+ * 
+ * @author SebastianPaez
  *
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
-    }
+public class App {
+
+	
+	public static void main(String[] args) {
+		System.out.println("Hello World");
+		
+	}
 }

@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html lang='es'>    
+<head>
+    <title>Calculadora Estadística</title>
+	<meta charset="UTF-8">
+
+
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap" rel="stylesheet">
+
+    <!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    
+    <!---------------------------------------------------------------------------------------------------------------------->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/apiclient.js"></script>
+    <script src="js/app.js"></script>
+    
+    <script>
+        function checknum(as) {
+            var a = as.value;
+            as.value = a.replace(/[^\d.,-]/g, '');
+        }
+            
+        function trimExtraComma() {
+            var utext = $('#idTextArea').val().trim();
+            var firstChar = utext.substring(0, utext.length);
+            if(firstChar == ',')
+            {
+                utext = utext.substring(1);
+            }
+            utext = utext.replace(/,+(?=,)/g,'');
+            utext = utext.replace('.,',',');
+            
+            $('#idTextArea').val(utext);
+        }
+    </script>
+</head>
+<body>
+    <br><br>    
+    <div style="text-align: center;">
+        <span class="badge badge-secondary" style="font-size:30pt; font-family: 'Patua One', cursive;">Bienvenido a la Calculadora Estadística </span>
+    </div>
+
+    <br><br>
+    <div class="card text-white bg-secondary mb-3 divStyle" style="max-width: 50%; text-align: center; margin:0 auto 0 auto">
+        <div class="card-body">
+          <h5 class="card-title"><b>Calculadora de Media y Desviación Estándar</b></h5>
+          <p class="card-text">Introduzca todos los números separados por comas (',') (Mínimo 2 números) </p>
+          <p class="card-text"> <b>Nota: </b>Recuerde que los números decimales se escriben con punto ('.'), no con comas </p>
+          <p class="card-text"> Por ejemplo: 11, 2.2, 3.4, 44, 55.56... </p>
+          <div class="form-group">
+            <textarea class="form-control" id="idTextArea" rows="3" 
+            onkeyup='checknum(this); trimExtraComma()'></textarea>
+          </div>
+          <button type="button" class="btn btn-light " style = "float: right" onclick = "app.pruebaJava()"> Resetear </button>
+          <div style = "width: 40px;"></div>
+          <button type="button" class="btn btn-light" style = "float: right" onclick = "app.pruebaJava()"> Calcular </button>
+        </div>        
+    </div>
+    <center> 
+        <table id = "idTable" class='table table-bordered table-dark' style = 'width:50%; text-align: center; display: none;'>
+            <thead>
+                <tr>
+                    <th scope='col'> OPERACIÓN </th>
+                    <th scope='col'> VALOR </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td> Media </td>
+                    <td id = "idTdMedia"></td>
+                </tr>
+                <tr>
+                    <td> Desviación Estándar </td>
+                    <td id = "idTdDesviacion"></td>
+                </tr>
+            </tbody> 
+        </table> 
+    </center>
+</body>
+</html>
