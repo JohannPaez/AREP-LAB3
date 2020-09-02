@@ -114,7 +114,7 @@ public class SocketServer extends ServerSocket implements Runnable {
 		int port = getPort();
 		try {
 			System.out.println("Corriendo sobre el puerto 80");
-			SocketServer socketServer = new SocketServer(getPort());
+			SocketServer socketServer = new SocketServer(54994);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			System.err.println("Algo ha ocurrido, intente nuevamente!");
