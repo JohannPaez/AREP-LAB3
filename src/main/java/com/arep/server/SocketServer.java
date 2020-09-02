@@ -28,7 +28,7 @@ public class SocketServer extends ServerSocket implements Runnable {
 	public void run() {
 		while (true) {
 			try {
-				System.out.println("Cliente");
+				System.out.println("\n Cliente");
 				Socket client = accept();
 				System.out.println("Conexion");
 				readerWriter = new ReadWriteRequest(client);
@@ -113,7 +113,7 @@ public class SocketServer extends ServerSocket implements Runnable {
 		int port = getPort();
 		try {
 			System.out.println("Corriendo sobre el puerto 80");
-			SocketServer socketServer = new SocketServer(port);
+			SocketServer socketServer = new SocketServer(getPort());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			System.err.println("Algo ha ocurrido, intente nuevamente!");

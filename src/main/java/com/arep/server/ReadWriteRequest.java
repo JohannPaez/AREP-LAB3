@@ -45,14 +45,15 @@ public class ReadWriteRequest {
 		String line = null;
 		String res = "";
 		try {
-			System.out.println("INLINE " + in.readLine());
-			while ((line = in.readLine()).length() != 0) {
+			//System.out.println("INLINE " + in.readLine());
+			while ((line = in.readLine()) != null) {
 				res += line + "\n";
 				if (!in.ready()) break;
 			}
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			System.err.println("Error al leer la peticion \n" );
 			e.printStackTrace();
 		}
 		return res;
