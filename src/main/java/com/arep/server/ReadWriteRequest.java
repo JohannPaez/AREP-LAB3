@@ -32,7 +32,13 @@ public class ReadWriteRequest {
 			out = new PrintWriter(socket.getOutputStream(), true);
 			System.out.println("OUT FINAL ");
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			System.out.println("IN FINAL ");
+			String line;
+			String res = "";
+			while ((line = in.readLine()).length() != 0) {
+				res = res + line + "\n";
+				if (!in.ready()) break;
+			}
+			System.out.println("RES ----------------------------- " + res);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			System.err.println("Error \n" + e);

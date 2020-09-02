@@ -28,7 +28,7 @@ public class SocketServer extends ServerSocket implements Runnable {
 	public void run() {
 		while (true) {
 			try {
-				System.out.println("\n Cliente");
+				System.out.println("\nCliente");
 				Socket client = accept();
 				System.out.println("Conexion");
 				readerWriter = new ReadWriteRequest(client);
