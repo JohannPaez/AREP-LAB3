@@ -28,9 +28,13 @@ public class SocketServer extends ServerSocket implements Runnable {
 	public void run() {
 		while (true) {
 			try {
+				System.out.println("Cliente");
 				Socket client = accept();
+				System.out.println("Conexion");
 				readerWriter = new ReadWriteRequest(client);
-				Request request = new Request(readerWriter.read());			
+				System.out.println("Read Request");
+				Request request = new Request(readerWriter.read());
+				System.out.println("Construye Request");
 				String path = request.getPath();
 				System.out.println("Request " + path);
 				
