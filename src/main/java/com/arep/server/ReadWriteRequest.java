@@ -45,7 +45,7 @@ public class ReadWriteRequest {
 		String line = null;
 		String res = "";
 		try {
-			//System.out.println("INLINE " + in.readLine());
+			System.out.println("INLINE " + in.readLine());
 			while ((line = in.readLine()) != null) {
 				res += line + "\n";
 				if (!in.ready()) break;
