@@ -54,6 +54,9 @@ public class ReadWriteRequest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println("---------------------------------------------------------------------");
+		System.out.println("IN " + res);
+		System.out.println("---------------------------------------------------------------------");
 		return res;
 	}
 	
