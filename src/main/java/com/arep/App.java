@@ -1,7 +1,12 @@
 package com.arep;
 
-import static com.arep.HttpServer.port;
-import static com.arep.HttpServer.get;
+import static com.arep.services.HttpServer.port;
+
+import com.arep.modelo.Animal;
+import com.arep.services.DataBase;
+import com.arep.services.ServicesHttp;
+
+import static com.arep.services.HttpServer.get;
 
 /**
  * 
@@ -10,12 +15,23 @@ import static com.arep.HttpServer.get;
  */
 public class App {
 	
+	
 
 	public static void main(String[] args) {
-		System.out.println("APP ");
+		ServicesHttp servicesHttp = new ServicesHttp();
 		port(getPort());
+		
 		get("/hola", (request) -> {
 			return "HOLA JOSELIN";
+		});
+		get("/hello", (request) -> {
+			return servicesHttp.getAnimals();
+		});
+		
+		get("/add", (request) -> {
+			Animal animal = new Animal("Pez", "Doroti", 2);
+			servicesHttp.addAnimal(animal);
+			return "";
 		});
 	}
 

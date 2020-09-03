@@ -71,6 +71,9 @@ public class SocketServer extends ServerSocket implements Runnable {
 					viewHtml();				 
 				} else if (solicitudes.get(path) != null) {
 					String data = solicitudes.get(path).apply(request);
+					System.out.println("------------------------------------ DATA -----------------------------------------");
+					System.out.println(data);
+					System.out.println("------------------------------------ DATA -----------------------------------------");
 					readerWriter.write("plain", data);
 				}
 				else readerWriter.badResponse();
