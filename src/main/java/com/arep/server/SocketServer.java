@@ -37,9 +37,10 @@ public class SocketServer extends ServerSocket implements Runnable {
 				readerWriter = new ReadWriteRequest(client);
 				System.out.println("Read Request");
 				String readerString = readerWriter.read();
-				if (readerString == null) {
+				if (readerString.equals("")) {
 					System.out.println("------------------------- readerString NULO ---------------------------------" );
 					readerWriter.badResponse();
+					continue;
 				}
 				Request request = new Request(readerString);
 				System.out.println("Construye Request");

@@ -47,21 +47,21 @@ public class ReadWriteRequest {
 	 * @return Un string con la información recibida
 	 */
 	public String read() {
+		String line;
+		String res = "";
 		try {
-			String line;
-			String res = "";
-			//System.out.println("INLINE " + in.readLine());
+			System.out.println("INLINE " + in.readLine());
 			while ((line = in.readLine()) != null) {				
 				res = res + line + "\n";
 				if (!in.ready()) break;
 			}
-			return res;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			System.err.println("Error al leer la peticion \n" );
 			e.printStackTrace();
 		}
-		return null;
+		System.out.println("TERMINO READ!!!!!!!!!");
+		return res;
 	}
 	
 	/**
