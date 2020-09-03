@@ -25,15 +25,13 @@ public class ReadWriteRequest {
 	 * @param socket Es el socket a ser guardado
 	 */
 	public ReadWriteRequest (Socket socket) {
-		//this.setSocket(socket);
-		this.socket = socket; 
+		this.setSocket(socket);		
 		try {
-			//System.out.println("LLEGO SOCKET");
+			System.out.println("LLEGO SOCKET");
 			out = new PrintWriter(socket.getOutputStream(), true);
-			//System.out.println("OUT FINAL ");
-			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			
-			//System.out.println("SALIO IN ");
+			System.out.println("OUT FINAL ");
+			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));			
+			System.out.println("SALIO IN ");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			System.err.println("Error \n" + e);
@@ -47,21 +45,26 @@ public class ReadWriteRequest {
 	 * @return Un string con la información recibida
 	 */
 	public String read() {
-		String line;
-		String res = "";
+		System.out.println("ENTRO READ");
 		try {
-			System.out.println("INLINE " + in.readLine());
-			while ((line = in.readLine()) != null) {				
+			System.out.println("ENTRO READ 1");
+			String line;
+			String res = "";
+			//System.out.println("INLINE " + in.readLine());
+			System.out.println("ENTRO READ 2");
+			while ((line = in.readLine()) != null) {
+				System.out.println("ENTRO READ 3");
 				res = res + line + "\n";
 				if (!in.ready()) break;
 			}
+			System.out.println("ENTRO READ 4");
+			return res;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			System.err.println("Error al leer la peticion \n" );
 			e.printStackTrace();
-		}
-		System.out.println("TERMINO READ!!!!!!!!!");
-		return res;
+			return null;
+		}		
 	}
 	
 	/**

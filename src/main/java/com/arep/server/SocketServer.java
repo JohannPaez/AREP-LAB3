@@ -37,11 +37,11 @@ public class SocketServer extends ServerSocket implements Runnable {
 				readerWriter = new ReadWriteRequest(client);
 				System.out.println("Read Request");
 				String readerString = readerWriter.read();
-				if (readerString.equals("")) {
+				/*if (readerString.equals("")) {
 					System.out.println("------------------------- readerString NULO ---------------------------------" );
 					readerWriter.badResponse();
 					continue;
-				}
+				}*/
 				Request request = new Request(readerString);
 				System.out.println("Construye Request");
 				String path = request.getPath();
@@ -131,7 +131,7 @@ public class SocketServer extends ServerSocket implements Runnable {
 	public static void main(String[] args) {
 		
 		try {
-			System.out.println("Corriendo sobre el puerto 80");
+			System.out.println("Corriendo sobre el puerto " + getPort());
 			SocketServer socketServer = new SocketServer(getPort());
 			socketServer.get("/hola", (request) -> {
 				
