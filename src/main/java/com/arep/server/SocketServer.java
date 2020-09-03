@@ -1,4 +1,4 @@
-package com.arep.server;
+package  com.arep.server;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -11,6 +11,7 @@ public class SocketServer extends ServerSocket implements Runnable {
 	private Thread thread;
 	private ReadWriteRequest readerWriter;
 	private HashMap<String, Function<Request, String>> solicitudes = new HashMap<>();
+	private static SocketServer socketServer;
 
 	/**
 	 * Crea un nuevo socketServer
@@ -20,9 +21,23 @@ public class SocketServer extends ServerSocket implements Runnable {
 	 */
 	public SocketServer(int port) throws IOException {
 		super(port);
+		System.out.println("Corriendo en puerto " + port);
 		thread = new Thread(this);
 		thread.start();
 	}
+	
+	public static SocketServer getSocketServer(int port) {
+		if (socketServer == null)
+			try {
+				socketServer = new SocketServer(port);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				System.err.println("Ocurrio un problema al intentar iniciar el servidor \n");
+				e.printStackTrace();
+			}
+		return socketServer;
+	}
+	
 
 	/**
 	 * Método que se ejecuta en paralelo para poder utilizar las demás peticiones de
@@ -38,7 +53,6 @@ public class SocketServer extends ServerSocket implements Runnable {
 				System.out.println("Read Request");
 				String readerString = readerWriter.read();
 				if (readerString.equals("")) {
-					System.out.println("------------------------- readerString NULO ---------------------------------" );
 					readerWriter.badResponse();
 					continue;
 				}
@@ -115,34 +129,5 @@ public class SocketServer extends ServerSocket implements Runnable {
 	public void get(String path, Function<Request, String> f) {	
 		solicitudes.put(path, f);
 	}
-
-	/**
-	 * Funcion que retorna el número del puerto por el cual se correrá el servicio.
-	 * @return El número de puerto del servicio.
-	 */
-	static int getPort() {
-		 if (System.getenv("PORT") != null) {
-			 System.out.println("PUERTO --------- " + System.getenv("PORT"));
-			 return Integer.parseInt(System.getenv("PORT"));
-		 }
-		 	return 36000;
-	}
-
-	public static void main(String[] args) {
-		
-		try {
-			System.out.println("Corriendo sobre el puerto " + getPort());
-			SocketServer socketServer = new SocketServer(getPort());
-			socketServer.get("/hola", (request) -> {
-				
-				
-				return "HOLA MUNDO";
-			});
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			System.err.println("Algo ha ocurrido, intente nuevamente!");
-			e.printStackTrace();
-		}
-	}
-
+	
 }

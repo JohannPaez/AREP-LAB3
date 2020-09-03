@@ -18,10 +18,7 @@ public class Request {
 	 */
 	public Request(String request) {	
 		parametros = new HashMap<>();
-		String[] line = request.split("\n")[0].split(" ");
-		System.out.println("-----------------------------REQUEST---------------------------------- \n");
-		System.out.println(request);
-		System.out.println("-----------------------------REQUEST---------------------------------- \n");
+		String[] line = request.split("\n")[0].split(" ");	
 		tipoPeticion = line[0]; 
 		String[] pathQuery = line[1].replace("?", " ").split(" ");
 		path =  pathQuery[0];

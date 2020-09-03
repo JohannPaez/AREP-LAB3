@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* com.arep.server.SocketServer
+web: java $JAVA_OPTS -cp target/classes:target/dependency/* com.arep.App
