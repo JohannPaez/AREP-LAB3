@@ -1,7 +1,10 @@
 package com.arep;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+
+import com.arep.server.SocketServer;
 
 /**
  * 
@@ -10,9 +13,25 @@ import java.net.URL;
  */
 public class App {
 
-	
+
+
 	public static void main(String[] args) {
-		System.out.println("Hello World");
 		
+
+		/*socketServer.get("/hola", (request) -> {					
+			return "HOLA MUNDO";
+		});*/
+	}
+	
+	/**
+	 * Funcion que retorna el número del puerto por el cual se correrá el servicio.
+	 * @return El número de puerto del servicio.
+	 */
+	static int getPort() {
+		 if (System.getenv("PORT") != null) {
+			 System.out.println("PUERTO --------- " + System.getenv("PORT"));
+			 return Integer.parseInt(System.getenv("PORT"));
+		 }
+		 	return 80;
 	}
 }

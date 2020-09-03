@@ -119,7 +119,7 @@ public class SocketServer extends ServerSocket implements Runnable {
 			 System.out.println("PUERTO --------- " + System.getenv("PORT"));
 			 return Integer.parseInt(System.getenv("PORT"));
 		 }
-		 	return 80;
+		 	return 36000;
 	}
 
 	public static void main(String[] args) {

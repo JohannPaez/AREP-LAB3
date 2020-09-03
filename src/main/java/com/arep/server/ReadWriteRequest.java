@@ -32,6 +32,7 @@ public class ReadWriteRequest {
 			out = new PrintWriter(socket.getOutputStream(), true);
 			//System.out.println("OUT FINAL ");
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			
 			//System.out.println("SALIO IN ");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -50,7 +51,7 @@ public class ReadWriteRequest {
 			String line;
 			String res = "";
 			//System.out.println("INLINE " + in.readLine());
-			while ((line = in.readLine()).length() != 0) {				
+			while ((line = in.readLine()) != null) {				
 				res = res + line + "\n";
 				if (!in.ready()) break;
 			}
