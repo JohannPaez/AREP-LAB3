@@ -61,7 +61,7 @@ public class ReadWriteRequest {
 			System.err.println("Error al leer la peticion \n" );
 			e.printStackTrace();
 		}
-		return "";
+		return null;
 	}
 	
 	/**
