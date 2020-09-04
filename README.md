@@ -89,6 +89,11 @@ Para instalar maven seguimos los siguientes pasos:
 ![](Images/PruebaImg_2.png)
 
 
+## Diagrama de Clases
+
+![](Images/Diagrama.png)
+
+
 ## ¿Cómo usar el aplicativo?
 1. Copie el enlace proporciano por el git del proyecto y clone el repositorio en el directorio de su preferencia.
 
