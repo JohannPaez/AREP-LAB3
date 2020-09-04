@@ -51,7 +51,6 @@ var app = (function () {
             flag = true;
             return;
         }
-        alert("Llego show all");
         apiclient.loadDataAnimals(tableConstructor);
 
     }
