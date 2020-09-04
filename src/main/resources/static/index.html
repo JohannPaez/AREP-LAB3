@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang='es'>    
 <head>
-    <title>Calculadora Estadística</title>
+    <title>Animales</title>
 	<meta charset="UTF-8">
 
 
@@ -24,23 +24,17 @@
     <script src="js/app.js"></script>
     
     <script>
+        function checkString(as) {
+            var a = as.value;                        
+            var res = a.replace(/[^\D]/g, '');
+            as.value = res.replace(/[*,.?¿´:;{}¡!'"\[\]/\\]/g, "");
+        }
+
         function checknum(as) {
             var a = as.value;
-            as.value = a.replace(/[^\d.,-]/g, '');
+            as.value = a.replace(/[^\d]/g, '');
         }
-            
-        function trimExtraComma() {
-            var utext = $('#idTextArea').val().trim();
-            var firstChar = utext.substring(0, utext.length);
-            if(firstChar == ',')
-            {
-                utext = utext.substring(1);
-            }
-            utext = utext.replace(/,+(?=,)/g,'');
-            utext = utext.replace('.,',',');
-            
-            $('#idTextArea').val(utext);
-        }
+                
     </script>
 </head>
 <body onload="app.loadTableAnimals()">
@@ -60,21 +54,21 @@
             <h3 for="inputEmail3" class="col-sm-2 col-form-label"> ANIMAL: </h3>
             <div class="col-sm-10">
                 <input type = "text" class="form-control is-invalid" id="idAnimal" placeholder="Escriba el tipo de animal (Oso, perro, gato...)" 
-                pattern="[A-Za-z]{1-20}" required></input>
+                onkeyup="checkString(this)" required></input>
             </div>
         </div>
         <div class="form-group row">
             <h3 for="inputEmail3" class="col-sm-2 col-form-label"> NOMBRE: </h3>
             <div class="col-sm-10">
                 <input type = "text" class="form-control is-invalid" id="idNombre" placeholder="Escriba el nombre del animal" 
-                pattern="[A-Za-z]{1-20}" required></input>
+                onkeyup="checkString(this)" required></input>
             </div>
         </div>
         <div class="form-group row">
             <h3 for="inputEmail3" class="col-sm-2 col-form-label"> EDAD: </h3>
             <div class="col-sm-10">
                 <input type = "number" class="form-control is-invalid" id="idEdad" placeholder="Digite la edad del animal (número entero)" 
-                pattern="[0-9]" required></input>
+                onkeyup="checknum(this)" required></input>
             </div>
         </div>    
         <br>
