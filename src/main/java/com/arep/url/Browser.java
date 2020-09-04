@@ -15,6 +15,10 @@ import java.util.Scanner;
  */
 public class Browser {
 	
+	/**
+	 * Lee una página html y la reescribe en resultado.html
+	 * @param args Son los parametros a la hora de ejecutar
+	 */
 	public static void main(String[] args) {
 		
 		System.out.println("Ingrese una URL válida para escribir su contenido en resultado.html");

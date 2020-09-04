@@ -10,10 +10,19 @@ import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
+/**
+ * 
+ * @author SebastianPaez
+ *
+ */
 public class DataBase {
 	
 	private MongoCollection<org.bson.Document> columnas;
 	
+	
+	/**
+	 * Realiza la conexión con la base de datos
+	 */
 	public DataBase() {
 		MongoClientURI uri = new MongoClientURI(
 		    "mongodb+srv://USER_AREP_LAB3:Prueba123@cluster0arep.d7c1c.azure.mongodb.net/AREP-LAB3?retryWrites=true&w=majority");		
@@ -23,7 +32,10 @@ public class DataBase {
 	}
 	
  	
-
+	/**
+	 * Añade un animal a la base de daots
+	 * @param a Es el nuevo animal a añadir
+	 */
 	public void addAnimal(Animal a) {
 		HashMap<String, Object> map = new HashMap<>();
 		String animal = a.getanimal();
@@ -37,6 +49,10 @@ public class DataBase {
 	}
 	
 	
+	/**
+	 * Consulta todos los animales de la base de datos
+	 * @return Una lista en formato JSON con los animales
+	 */
 	public String getAnimals() {
 		String data ="[";
 		Animal animal;

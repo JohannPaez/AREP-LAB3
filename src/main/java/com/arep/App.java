@@ -16,7 +16,10 @@ import static com.arep.services.HttpServer.post;
 public class App {
 	
 	
-
+	/**
+	 * Enciende el servidor para poder utilizar peticiones get y post
+	 * @param args Son los parametros recibidos al momento de ejecutar
+	 */
 	public static void main(String[] args) {
 		ServicesHttp servicesHttp = new ServicesHttp();
 		port(getPort());
@@ -39,7 +42,6 @@ public class App {
 
 	/**
 	 * Funcion que retorna el número del puerto por el cual se correrá el servicio.
-	 * 
 	 * @return El número de puerto del servicio.
 	 */
 	static int getPort() {

@@ -40,6 +40,11 @@ public class ReadWriteRequest {
 		
 	}
 	
+	/**
+	 * Añade los encabezados presentes en una solicitud POST
+	 * @param request Es la solicitud a revisar
+	 * @throws IOException En caso de que no se pueda leer la peticion
+	 */
 	private void addHeaders(String request) throws IOException {
 		headers = new HashMap<>();
 		String[] lista = request.split("\n");
@@ -59,14 +64,27 @@ public class ReadWriteRequest {
         body = bodyBuilder.toString();
         
 	}
+	/**
+	 * Retorna los encabezados de una solicitud 
+	 * @return headers
+	 */
 	public HashMap<String, String> getHeaders() {
 		return headers;
 	}
 	
+	/**
+	 * Retorna el contenido de una solicitud POST
+	 * @return body
+	 */
 	public String getBody() {
 		return body;
 	}
 	
+	/**
+	 * Crea una lista con el header, a partir de la separacion de los dos puntos
+	 * @param header Es el header a revisar
+	 * @return Una lista con el header separado
+	 */
 	private String[] createHeader(String header) {
         return header.split(":");
     }
@@ -116,6 +134,9 @@ public class ReadWriteRequest {
 		}
 	}
 	
+	/**
+	 * Escribe una información de mala solicitud en el socket
+	 */
 	public void badResponse() {		
 		
 		System.out.println("ENTRO BADRESPONSE");

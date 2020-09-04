@@ -18,12 +18,18 @@ import java.util.Set;
 public class UrlReader {
 	
 	
-	
+	/**
+	 * Invoca la funcion readURL
+	 * @param args Son los parametros a la hora de ejecutar
+	 */
 	public static void main(String[] args) {
 		readURL("http://localhost:36000/otroarchivoaqui.html");
 	}
 	
-	
+	/**
+	 * Lee una URL y muestra sus propiedades 
+	 * @param sitetoread Es la url a revisar
+	 */
 	public static void readURL(String sitetoread) {
         try {
             // Crea el objeto que representa una URL2

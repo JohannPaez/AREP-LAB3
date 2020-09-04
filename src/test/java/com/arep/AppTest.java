@@ -14,6 +14,9 @@ import com.arep.server.SocketServer;
 public class AppTest {
 	
 	
+	/**
+	 * Prueba que se retorne la informacion de los archivos
+	 */
 	@Test
 	public void shouldDoGetFiles() {
 		Request req = new Request();
@@ -25,6 +28,9 @@ public class AppTest {
 		assertEquals(data, "returnfiles");		
 	}
 	
+	/**
+	 * Prueba que se retorne la informacion del html
+	 */
 	@Test
 	public void shouldDoGetHtmls() {
 		Request req = new Request();
@@ -36,6 +42,9 @@ public class AppTest {
 		assertEquals(data, "index.html");		
 	}
 	
+	/**
+	 * Prueba que se retorne la informacion del css
+	 */
 	@Test
 	public void shouldDoGetCss() {
 		Request req = new Request();

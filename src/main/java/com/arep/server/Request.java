@@ -3,6 +3,11 @@ package com.arep.server;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 
+ * @author SebastianPaez
+ *
+ */
 public class Request {
 	
 	private String tipoPeticion;
@@ -32,6 +37,9 @@ public class Request {
 		
 	}
 	
+	/**
+	 * Constructor vacio para inicializar facilmente
+	 */
 	public Request() {
 		
 	}
@@ -70,6 +78,10 @@ public class Request {
 		return path;
 	}
 	
+	/**
+	 * Cambia el path de la solicitud
+	 * @param path Es el nuevo path
+	 */
 	public void setPath(String path) {
 		this.path = path;
 	}

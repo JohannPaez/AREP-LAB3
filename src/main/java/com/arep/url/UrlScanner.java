@@ -5,6 +5,10 @@ import java.net.URL;
 
 public class UrlScanner {
 	
+	/**
+	 * Lee una url y muestra algunos de sus propiedades como el protocolo
+	 * @param args Son los parametros a la hora de ejecutar
+	 */
 	public static void main(String[] args) {
 		try {
 			URL site = new URL("https://web.microsoftstream.com:443/video/search?q=ref+of+url&&asd=asdasd#redas=asd4r");

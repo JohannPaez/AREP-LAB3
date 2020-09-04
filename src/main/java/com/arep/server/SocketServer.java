@@ -7,6 +7,11 @@ import java.util.HashMap;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
+/**
+ * 
+ * @author SebastianPaez
+ *
+ */
 public class SocketServer extends ServerSocket implements Runnable {
 
 	private Thread thread;
@@ -28,6 +33,11 @@ public class SocketServer extends ServerSocket implements Runnable {
 		thread.start();
 	}
 	
+	/**
+	 * Da una instancia del servidor, creandola si no existe
+	 * @param port El puerto por el cual el servidor funcionara
+	 * @return Una instancia del servidor
+	 */
 	public static SocketServer getSocketServer(int port) {
 		if (socketServer == null)
 			try {
@@ -133,23 +143,46 @@ public class SocketServer extends ServerSocket implements Runnable {
 		}
 	}
 	
+	/**
+	 * Metodo get para realizar solicitudes al servidor
+	 * @param path Es el path al cual se atendera
+	 * @param f Es la funcion que se ejecutara
+	 */
 	public void get(String path, BiFunction<Request, String, String> f) {	
 		solicitudes.put(path, f);
 	}
 	
+	/*
+	 * Metodo get para realizar solicitudes al servidor
+	 * @param path Es el path al cual se atendera
+	 * @param f Es la funcion que se ejecutara
+	 */
 	public static void getStatic(String path, Function<Request, String> f) {	
 		solicitudesTest = new HashMap<>();
 		solicitudesTest.put(path, f);
 	}
 	
+	/**
+	 * Retorna una lista de las solicitudes get estaticas para pruebas
+	 * @return solicitudesTest
+	 */
 	public static HashMap<String, Function<Request, String>> getSolicitudesTest() {
 		return solicitudesTest;
 	}
 	
+	
+	/**
+	 * Metodo post para realizar solicitudes al servidor
+	 * @param path Es el path al cual se atendera
+	 * @param f Es la funcion que se ejecutara
+	 */
 	public void post(String path, BiFunction<Request, String, String> f) {	
 		solicitudes.put(path, f);
 	}
 	
+	/**
+	 * Detiene la ejecución del servidor
+	 */
 	public void stopServer() {
 		thread.stop();
 		System.out.println("Cerro el servidor!");
