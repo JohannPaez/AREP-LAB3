@@ -52,7 +52,13 @@ var app = (function () {
             return;
         }
         apiclient.loadDataAnimals(tableConstructor);
+        refresAll();
+    }
 
+    var refresAll = function() {
+        $("#idAnimal").val("");
+        $("#idNombre").val("");
+        $("#idEdad").val("");
     }
 
 
