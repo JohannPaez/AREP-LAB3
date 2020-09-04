@@ -32,11 +32,11 @@ Este aplicativo simula un servidor web que puede recibir peticiones get y post, 
  	- **/addAnimal**: Es la operación encargada de añadir un nuevo animal.
  - **Archivos Estáticos**:
  	- index.html
-  - style.css
-  - app.js
-  - apiclient.js
-  - tierra.jpg
-  - universo.jpg
+	- style.css
+	- app.js
+	- apiclient.js
+	- tierra.jpg
+	- universo.jpg
 
 ## Intalación 
 Si quieres saber como funciona el programa, tienes que seguir los siguientes pasos:
@@ -59,7 +59,34 @@ Para instalar maven seguimos los siguientes pasos:
 8. Reiniciamos eclipse y ya está instalado maven en eclipse.
 
 ## Pruebas
+- index.html
 
+![](Images/PruebaIndex.png)
+
+
+- style.css
+
+![](Images/PruebaCss.png)
+
+
+- app.js
+
+![](Images/PruebaJS_1.png)
+
+
+- tierra.jpg
+
+![](Images/PruebaImg_1.png)
+
+
+- apiclient.js
+
+![](Images/PruebaJS_2.png)
+
+
+- universo.jpg
+
+![](Images/PruebaImg_2.png)
 
 
 ## ¿Cómo usar el aplicativo?
