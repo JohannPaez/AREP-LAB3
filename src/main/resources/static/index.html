@@ -59,19 +59,22 @@
             
             <h3 for="inputEmail3" class="col-sm-2 col-form-label"> ANIMAL: </h3>
             <div class="col-sm-10">
-                <input type = "text" class="form-control is-invalid" id="idAnimal" placeholder="Escriba el tipo de animal (Oso, perro, gato...)" required></input>
+                <input type = "text" class="form-control is-invalid" id="idAnimal" placeholder="Escriba el tipo de animal (Oso, perro, gato...)" 
+                pattern="[A-Za-z]{1-20}" required></input>
             </div>
         </div>
         <div class="form-group row">
             <h3 for="inputEmail3" class="col-sm-2 col-form-label"> NOMBRE: </h3>
             <div class="col-sm-10">
-                <input type = "text" class="form-control is-invalid" id="idNombre" placeholder="Escriba el nombre del animal" required></input>
+                <input type = "text" class="form-control is-invalid" id="idNombre" placeholder="Escriba el nombre del animal" 
+                pattern="[A-Za-z]{1-20}" required></input>
             </div>
         </div>
         <div class="form-group row">
             <h3 for="inputEmail3" class="col-sm-2 col-form-label"> EDAD: </h3>
             <div class="col-sm-10">
-                <input type = "number" class="form-control is-invalid" id="idEdad" placeholder="Digite la edad del animal (número entero)" required></input>
+                <input type = "number" class="form-control is-invalid" id="idEdad" placeholder="Digite la edad del animal (número entero)" 
+                pattern="[0-9]" required></input>
             </div>
         </div>    
         <br>
