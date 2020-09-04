@@ -7,7 +7,7 @@
 
     <!-- CSS only -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap" rel="stylesheet">    
 
     <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -43,7 +43,7 @@
         }
     </script>
 </head>
-<body>
+<body onload="app.loadTableAnimals()">
     <br><br>    
 
     <div class = "divTitle" style="max-width: 50%; text-align: center; margin:0 auto 0 auto"> 
@@ -52,42 +52,35 @@
             <h3> Agrega Animales y Consultalos Abajo</h3>
         </header>
     </div>
-
     <br><br>
-    <div class="card text-white bg-secondary mb-3 divStyle" style="max-width: 50%; text-align: center; margin:0 auto 0 auto">
-        <div class="card-body">
-          <h5 class="card-title"><b>Calculadora de Media y Desviación Estándar</b></h5>
-          <p class="card-text">Introduzca todos los números separados por comas (',') (Mínimo 2 números) </p>
-          <p class="card-text"> <b>Nota: </b>Recuerde que los números decimales se escriben con punto ('.'), no con comas </p>
-          <p class="card-text"> Por ejemplo: 11, 2.2, 3.4, 44, 55.56... </p>
-          <div class="form-group">
-            <textarea class="form-control" id="idTextArea" rows="3" 
-            onkeyup='checknum(this); trimExtraComma()'></textarea>
-          </div>
-          <button type="button" class="btn btn-light " style = "float: right" onclick = "app.pruebaJava()"> Resetear </button>
-          <div style = "width: 40px;"></div>
-          <button type="button" class="btn btn-light" style = "float: right" onclick = "app.pruebaJava()"> Calcular </button>
-        </div>        
+    <div class = "divForm" style="max-width: 50%; text-align: center; margin: 0 auto 0 auto">
+    <form class="was-validated">        
+        <div class="form-group row">
+            
+            <h3 for="inputEmail3" class="col-sm-2 col-form-label"> ANIMAL: </h3>
+            <div class="col-sm-10">
+                <input type = "text" class="form-control is-invalid" id="idAnimal" placeholder="Escriba el tipo de animal (Oso, perro, gato...)" required></input>
+            </div>
+        </div>
+        <div class="form-group row">
+            <h3 for="inputEmail3" class="col-sm-2 col-form-label"> NOMBRE: </h3>
+            <div class="col-sm-10">
+                <input type = "text" class="form-control is-invalid" id="idNombre" placeholder="Escriba el nombre del animal" required></input>
+            </div>
+        </div>
+        <div class="form-group row">
+            <h3 for="inputEmail3" class="col-sm-2 col-form-label"> EDAD: </h3>
+            <div class="col-sm-10">
+                <input type = "number" class="form-control is-invalid" id="idEdad" placeholder="Digite la edad del animal (número entero)" required></input>
+            </div>
+        </div>    
+        <br>
+        <button type="button" class="btn btn-light" style = "width: 99%" onclick="app.addAnimal()"> Añadir Animal </button>
+    </form>
     </div>
-    <center> 
-        <table id = "idTable" class='table table-bordered table-dark' style = 'width:50%; text-align: center; display: none;'>
-            <thead>
-                <tr>
-                    <th scope='col'> OPERACIÓN </th>
-                    <th scope='col'> VALOR </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td> Media </td>
-                    <td id = "idTdMedia"></td>
-                </tr>
-                <tr>
-                    <td> Desviación Estándar </td>
-                    <td id = "idTdDesviacion"></td>
-                </tr>
-            </tbody> 
-        </table> 
-    </center>
+    <br></br>
+
+
+    <div class = "divTable" id = "idTable">  </div>
 </body>
 </html>

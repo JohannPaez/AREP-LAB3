@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 
@@ -19,6 +20,8 @@ public class ReadWriteRequest {
 	private Socket socket;
 	private BufferedReader in;
 	private PrintWriter out;
+	private HashMap<String, String> headers;
+	private String body;
 	
 	/**
 	 * Constructor donde se asigna el socket correspondiente
@@ -37,6 +40,38 @@ public class ReadWriteRequest {
 		
 	}
 	
+	private void addHeaders(String request) throws IOException {
+		headers = new HashMap<>();
+		String[] lista = request.split("\n");
+		for (int i = 0; i < lista.length; i++) {
+			String[] entity = createHeader(lista[i]);
+			if (entity.length > 1) {
+				headers.put(entity[0], entity[1]);
+			}
+		}
+		StringBuilder bodyBuilder = new StringBuilder();
+        int c = 0;
+        int cl = Integer.parseInt(headers.get("Content-Length").trim());
+        for (int i = 0; i < cl  ; i++) {
+            c = in.read();
+            bodyBuilder.append((char) c);
+        }
+        body = bodyBuilder.toString();
+        
+	}
+	public HashMap<String, String> getHeaders() {
+		return headers;
+	}
+	
+	public String getBody() {
+		return body;
+	}
+	
+	private String[] createHeader(String header) {
+        return header.split(":");
+    }
+	
+	
 	/**
 	 * Lee el encabezado enviado al momento de conectarse
 	 * @return Un string con la información recibida
@@ -46,19 +81,22 @@ public class ReadWriteRequest {
 			String line;
 			String res = "";
 			//System.out.println("INLINE " + in.readLine());
+			
 			while ((line = in.readLine()) != null) {
 				res = res + line + "\n";
-				if (!in.ready()) break;
+				if (!in.ready() || line.length() == 0) break;
 			}
+			if (res.split("\n")[0].split(" ")[0].equals("POST")) addHeaders(res); 
 			return res;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			System.err.println("Error al leer la peticion \n" );
-			e.printStackTrace();
+			e.printStackTrace();			
 			return null;
 		}		
-	}
-	
+	}	
+		
+
 	/**
 	 * Escribe la información en el socket para mostrar el recurso solicitado
 	 * @param extension Es la extencion del recurso solicitado por el cliente

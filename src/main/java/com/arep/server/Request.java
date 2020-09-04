@@ -7,6 +7,8 @@ public class Request {
 	
 	private String tipoPeticion;
 	private String path;
+	private String body;
+	private HashMap<String, String> headers;
 	
 	// Diccionario llave valor para la query
 	private Map<String, String> parametros;
@@ -22,15 +24,17 @@ public class Request {
 		tipoPeticion = line[0]; 
 		String[] pathQuery = line[1].replace("?", " ").split(" ");
 		path =  pathQuery[0];
-		System.out.println("PATH " + path);
-		System.out.println("Tipo peticion " + tipoPeticion);
-		
+		//System.out.println("PATH " + path);
+		//System.out.println("Tipo peticion " + tipoPeticion);		
 		if (pathQuery.length > 1) {
 			llenarParametros(pathQuery[1]);
 		}
 		
 	}
-
+	
+	public Request() {
+		
+	}
 	
 	/**
 	 * Llena los parametros en caso de que se hayan enviado por peticion
@@ -65,6 +69,11 @@ public class Request {
 	public String getPath() {
 		return path;
 	}
+	
+	public void setPath(String path) {
+		this.path = path;
+	}
+
 
 	
 	/**
@@ -75,5 +84,36 @@ public class Request {
 		return parametros;
 	}
 
+	/**
+	 * Retorna el contenido de la solicitud
+	 * @return body Que es el contenido de la solicitud
+	 */
+	public String getBody() {
+		return body;
+	}
+
+	/**
+	 * Cambia el contenido de la solicitud
+	 * @param body Es el nuevo contenido a cambiar
+	 */
+	public void setBody(String body) {
+		this.body = body;
+	}
+	
+	/**
+	 * Retorna los encabezados de la solicitud
+	 * @return headers Que son los encabezados de la solicitud
+	 */
+	public Map<String, String> getHeaders() {
+		return headers;
+	}
+	
+	/**
+	 * Cambia los encabezados de la solicitud
+	 * @param headers Son los encabezados de la solicitud
+	 */
+	public void setHeaders(HashMap<String, String> headers) {
+		this.headers = headers;
+	}
 }
 

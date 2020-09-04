@@ -13,6 +13,15 @@ body {
     color: white;
 }
 
+.divForm {
+    border: solid black 1px;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    background-image: linear-gradient(-45deg, #08185B, #949CBC);
+    color: white;
+}
+
 header {
     border: solid black 1px;
     border-radius: 10px;

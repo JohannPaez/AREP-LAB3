@@ -4,13 +4,15 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public class SocketServer extends ServerSocket implements Runnable {
 
 	private Thread thread;
 	private ReadWriteRequest readerWriter;
-	private HashMap<String, Function<Request, String>> solicitudes = new HashMap<>();
+	private HashMap<String, BiFunction<Request, String, String>> solicitudes = new HashMap<>();
+	private static HashMap<String, Function<Request, String>> solicitudesTest = new HashMap<>();
 	private static SocketServer socketServer;
 
 	/**
@@ -51,13 +53,15 @@ public class SocketServer extends ServerSocket implements Runnable {
 				System.out.println("Conexion");
 				readerWriter = new ReadWriteRequest(client);
 				System.out.println("Read Request");
-				String readerString = readerWriter.read();
+				String readerString = readerWriter.read();				
 				if (readerString.equals("")) {
 					readerWriter.badResponse();
 					continue;
 				}
 				Request request = new Request(readerString);
-				System.out.println("Construye Request");
+				request.setBody(readerWriter.getBody());
+				String body = request.getBody();
+				if (body != null) request.setHeaders(readerWriter.getHeaders());			
 				String path = request.getPath();
 				System.out.println("Request " + path);
 				
@@ -70,7 +74,7 @@ public class SocketServer extends ServerSocket implements Runnable {
 				if (path.equals("/index.html") || path.equals("/")) {
 					viewHtml();				 
 				} else if (solicitudes.get(path) != null) {
-					String data = solicitudes.get(path).apply(request);
+					String data = solicitudes.get(path).apply(request, body);
 					System.out.println("------------------------------------ DATA -----------------------------------------");
 					System.out.println(data);
 					System.out.println("------------------------------------ DATA -----------------------------------------");
@@ -129,8 +133,25 @@ public class SocketServer extends ServerSocket implements Runnable {
 		}
 	}
 	
-	public void get(String path, Function<Request, String> f) {	
+	public void get(String path, BiFunction<Request, String, String> f) {	
 		solicitudes.put(path, f);
 	}
 	
+	public static void getStatic(String path, Function<Request, String> f) {	
+		solicitudesTest = new HashMap<>();
+		solicitudesTest.put(path, f);
+	}
+	
+	public static HashMap<String, Function<Request, String>> getSolicitudesTest() {
+		return solicitudesTest;
+	}
+	
+	public void post(String path, BiFunction<Request, String, String> f) {	
+		solicitudes.put(path, f);
+	}
+	
+	public void stopServer() {
+		thread.stop();
+		System.out.println("Cerro el servidor!");
+	}
 }

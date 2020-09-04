@@ -1,17 +1,27 @@
 var apiclient = (function(){
-
+	var zelda = "http://localhost:36000";
     return {
-        realizarCalculos: function(datos, callback) {
-            var promise = $.post({
-        		url: "/operation",
-        		data: JSON.stringify(datos),
-        		contentType: "application/json"
+        loadDataAnimals: function(callback) {
+            var promise = $.get({
+        		url: "/animals"
             });
         	promise.then(function(data){
         		callback(null, JSON.parse(data));
         	}, function(error) {
         		callback(error, null);
         	});
-        }
+		}, 
+		addAnimal: function(jsonAnimal, callback) {		
+		
+			var promise = $.post({
+        		url: "/addanimal",
+        		data: JSON.stringify(jsonAnimal)
+            });
+        	promise.then(function(data){
+        		callback(null, JSON.parse(data));
+        	}, function(error) {
+        		callback(error, null);
+			});			
+		}
     }
 })();

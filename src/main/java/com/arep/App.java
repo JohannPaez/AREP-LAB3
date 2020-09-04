@@ -2,10 +2,11 @@ package com.arep;
 
 import static com.arep.services.HttpServer.port;
 
-import com.arep.modelo.Animal;
+import com.arep.model.Animal;
 import com.arep.services.ServicesHttp;
 
 import static com.arep.services.HttpServer.get;
+import static com.arep.services.HttpServer.post;
 
 /**
  * 
@@ -20,17 +21,19 @@ public class App {
 		ServicesHttp servicesHttp = new ServicesHttp();
 		port(getPort());
 		
-		get("/hola", (request) -> {
-			return "HOLA JOSELIN";
-		});
-		get("/hello", (request) -> {
+		get("/animals", (request, response) -> {
 			return servicesHttp.getAnimals();
 		});
 		
-		get("/add", (request) -> {
-			Animal animal = new Animal("Pez", "Doroti", 2);
-			servicesHttp.addAnimal(animal);
-			return "";
+		post("/addanimal", (request, response) -> {
+			String body = request.getBody();
+			String res = "Para poder añadir un animal, envielo desde el formulario en la página principal :D";
+			System.out.println("REQUEST POST ----------- \n" + body);
+			if (body != null) {
+				servicesHttp.addAnimal(body);
+				res = "El animal con las características \n" + body + "\nHa sido añadido correctamente"; 
+			} 			
+			return res;
 		});
 	}
 

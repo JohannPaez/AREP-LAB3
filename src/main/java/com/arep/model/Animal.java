@@ -1,4 +1,4 @@
-package com.arep.modelo;
+package com.arep.model;
 
 public class Animal {
 	private String animal;
@@ -43,6 +43,6 @@ public class Animal {
 	}
 	
 	public String toString() {
-		return "{\"animal\":" + " \"" + animal +  " \"" + ", \"nombre\":" + " \"" + nombre +  " \"" + ", \"edad\":" + " \"" + edad +  " \"" + "}";
+		return "{\"animal\": " + "\"" + animal +  "\"" + ", \"nombre\": " + "\"" + nombre +  "\"" + ", \"edad\": " + edad + "}";
 	}
 }

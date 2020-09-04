@@ -1,5 +1,6 @@
 package com.arep.services;
 
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import com.arep.server.Request;
@@ -14,9 +15,16 @@ public class HttpServer {
 		
 	}
 		
-	public static void get(String path, Function<Request, String> f) {
+	public static void get(String path, BiFunction<Request, String, String> f) {
 		server.get(path, f);
 	}
 	
+	public static void post(String path, BiFunction<Request, String, String> f) {
+		server.post(path, f);
+	}
+	
+	public static void stopServer() {
+		server.stopServer();
+	}
 	
 }

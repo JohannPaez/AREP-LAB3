@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import org.bson.Document;
 
-import com.arep.modelo.Animal;
+import com.arep.model.Animal;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
