@@ -35,6 +35,12 @@ var app = (function () {
         var animal = $("#idAnimal").val();
         var nombre = $("#idNombre").val();
         var edad = $("#idEdad").val();
+        console.log(edad);
+        if (animal == "" || nombre == "" || edad == "") {
+            alert("Todos los campos son obligatorios");
+            return;
+        }
+
         var jsonAnimal = {"animal": animal, "nombre": nombre, "edad": edad}; 
         console.log(jsonAnimal);
         console.log(JSON.stringify(jsonAnimal));

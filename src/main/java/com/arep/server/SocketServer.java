@@ -92,7 +92,7 @@ public class SocketServer extends ServerSocket implements Runnable {
 				}
 				else readerWriter.badResponse();
 				client.close();
-			} catch (IOException e) {
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				System.err.println("Ocurrio un problema al intentar realizar esas peticiones.");
 				e.printStackTrace();
